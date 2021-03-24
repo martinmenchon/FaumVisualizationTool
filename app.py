@@ -146,7 +146,7 @@ with body1:
     #     st.write("Make sure you image is in JPG/PNG Format.")
 
         if session_state.loaded == False:
-            raster = cv2.imread(raster_path,-1)
+            raster = cv2.imread(raster_path,-1) ## El raster!!! fuck
 
             resized_image = image_resize(imagen, width = 725)
 
