@@ -43,6 +43,13 @@ def load_image(img):
     image = np.array(im)
     return image
 
+def load_raster(img):
+    # print(img)
+    im = Image.open(img)
+    im = np.array(im)
+    # im = cv2.imread(im,-1)
+    return im
+
 
 #Remove button
 hide_streamlit_style = """
@@ -137,16 +144,21 @@ with header:
 with body1:   
     # Uploading the File to the Page
     uploadFile = st.file_uploader(label="Upload image")
+    uploadRaster = st.file_uploader(label="Upload raster")
 
     # Checking the Format of the page
     if uploadFile is not None:
         imagen = load_image(uploadFile)
-        st.write("Image Uploaded Successfully")
+    
+    if uploadRaster is not None:
+        raster = load_raster(uploadRaster)
+
+    if uploadFile is not None and uploadRaster is not None:
     # else:
     #     st.write("Make sure you image is in JPG/PNG Format.")
 
         if session_state.loaded == False:
-            raster = cv2.imread(raster_path,-1) ## El raster!!! fuck
+            # raster = cv2.imread(raster_path,-1) ## El raster!!! fuck
 
             resized_image = image_resize(imagen, width = 725)
 
@@ -189,7 +201,7 @@ with body1:
         st.image(session_state.resized_image)
         st.image(color_pallete) 
 
-if uploadFile is not None:       
+if uploadFile is not None and uploadRaster is not None:       
     with body2:
         values_to_keep = st.multiselect("Select values you want to keep", array_of_values)
         trasnparency = st.slider('Select a transparency',value=128, min_value=0, max_value=255)
