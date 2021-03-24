@@ -1,15 +1,12 @@
 import streamlit as st
-import os
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import ImageColor
 import seaborn as sns
 import SessionState
-import tempfile
 import streamlit.components.v1 as components
 session_state = SessionState.get(loaded=False,day=[],upload_key = None,values_to_keep=[], trasnparency=-1)
-import base64
 import pathlib
 import copy
 
